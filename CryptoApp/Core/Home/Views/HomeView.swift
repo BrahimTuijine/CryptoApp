@@ -17,13 +17,11 @@ struct HomeView: View {
             Color.theme.background
                 .ignoresSafeArea()
             
-            // content layer
+            // content layer 
                 VStack {
                     homeHeader
                     Spacer(minLength: 0)
                 }
-        
-            
         }
     }
 }
