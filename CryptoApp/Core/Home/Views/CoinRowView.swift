@@ -10,51 +10,83 @@ import SwiftUI
 struct CoinRowView: View {
     
     let coin : CoinModel
+    let showHoldingsCoin: Bool
     
     var body: some View {
         HStack {
-            Text("\(coin.rank)")
-                .font(.caption)
-                .foregroundColor(Color.theme.secondaryText)
-                .frame(minWidth: 30)
             
-            AsyncImage(url: URL(string: coin.image)) { image in
-                image.resizable()
-            } placeholder: {
-                Color.red
+            coinTitleAndImage
+            
+            if showHoldingsCoin {
+                centerColumn
             }
-            .frame(width: 35, height: 35)
-            .clipShape(.rect(cornerRadius: 25))
+            Spacer()
             
-            Text("\(coin.symbol)".uppercased())
-                .foregroundColor(Color.theme.accent)
-                .font(.headline)
-                .fontWeight(.semibold)
-            
+            rightColumn
+        }
+        .font(.subheadline)
+    }
+}
+
+struct CoinRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        CoinRowView(coin: dev.coin, showHoldingsCoin: true)
+            .previewLayout(.sizeThatFits)
+        
+        CoinRowView(coin: dev.coin, showHoldingsCoin: true)
+            .previewLayout(.sizeThatFits)
+            .preferredColorScheme(.dark)
+    }
+}
+
+extension CoinRowView {
+    var coinTitleAndImage : some View {
+        return Group {
+            Text("\(coin.rank)")
+                  .font(.caption)
+                  .foregroundColor(Color.theme.secondaryText)
+              
+              AsyncImage(url: URL(string: coin.image)) { image in
+                  image.resizable()
+              } placeholder: {
+                  Color.red
+              }
+              .frame(width: 30, height: 30 )
+              .clipShape(.rect(cornerRadius: 25))
+              
+              Text("\(coin.symbol)".uppercased())
+                  .foregroundColor(Color.theme.accent)
+                  .font(.headline)
+                  .fontWeight(.semibold)
+        }
+    }
+    
+    var centerColumn : some View {
+        return Group {
             Spacer()
             VStack(alignment: .trailing) {
-                Text(coin.currentPrice.asCurrencyWith6Digits())
-                    .foregroundColor(Color.theme.accent)
-                    .fontWeight(.bold)
-                
-                Text("\(coin.priceChangePercentage24H)%")
-                    .font(.title3)
-                    .foregroundColor(
-                        coin.priceChangePercentage24H >= 0 ? Color.theme.green : Color.theme.red
-                    )
-                
+                Text(coin.currentHoldingValue.asCurrency(maximumFractionDigits: 2))
+                    .bold()
+                Text((coin.currentHoldings ?? 0).asNumberString())
             }
+            .foregroundColor(.theme.accent)
+        }
+    }
+    
+    var rightColumn : some View {
+        return VStack(alignment: .trailing) {
+            Text(coin.currentPrice.asCurrency(maximumFractionDigits: 6))
+                .foregroundColor(Color.theme.accent)
+                .fontWeight(.bold)
+            
+            Text(coin.priceChangePercentage24H.asPercentString())
+                .font(.headline)
+                .foregroundColor(
+                    coin.priceChangePercentage24H >= 0 ? Color.theme.green : Color.theme.red
+                )
+            
         }
     }
 }
 
-//#Preview(traits: .sizeThatFitsLayout) {
-//    CoinRowView(coin: PreviewProvider.dev.coin)
-//}
 
-struct CoinRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        CoinRowView(coin: dev.coin)
-            .previewLayout(.sizeThatFits)
-    }
-}

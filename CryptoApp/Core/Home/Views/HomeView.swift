@@ -17,11 +17,20 @@ struct HomeView: View {
             Color.theme.background
                 .ignoresSafeArea()
             
-            // content layer 
-                VStack {
-                    homeHeader
-                    Spacer(minLength: 0) 
+            // content layer
+            VStack {
+                homeHeader
+                
+                List {
+                    ForEach(0..<10) { index in
+                        CoinRowView(coin: DeveloperPreview.instance.coin, showHoldingsCoin: false)
+                    }
                 }
+                .listStyle(.plain)
+                Spacer(minLength: 0)
+                
+                
+            }
         }
     }
 }
