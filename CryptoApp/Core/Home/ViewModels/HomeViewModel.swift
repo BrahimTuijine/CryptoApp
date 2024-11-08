@@ -25,5 +25,10 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    
+    func addCoinsSubscriber() -> Void {
+        dataService.$allCoins.sink { [weak self] coins in
+            self?.allCoins = coins
+        }
+        .store(in: &cancellables)
+    }
 }
