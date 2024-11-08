@@ -11,6 +11,8 @@ struct HomeView: View {
     
     @State private var showPortfolio: Bool = false
     
+    @EnvironmentObject private var vm : HomeViewModel
+    
     var body: some View {
         ZStack {
             // background layer
@@ -21,12 +23,16 @@ struct HomeView: View {
             VStack {
                 homeHeader
                 
-                List {
-                    ForEach(0..<10) { index in
-                        CoinRowView(coin: DeveloperPreview.instance.coin, showHoldingsCoin: false)
-                    }
+                columnTitle
+                
+                if !showPortfolio {
+                    allCoinsList(coins: vm.allCoins)
+                    .transition(.move(edge: .leading))
+                }else {
+                    allCoinsList(coins: vm.portfolioCoins)
+                    .transition(.move(edge: .trailing))
                 }
-                .listStyle(.plain)
+                
                 Spacer(minLength: 0)
                 
                 
@@ -35,9 +41,12 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    NavigationView {
-        HomeView()
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            HomeView()
+        }
+        .environmentObject(dev.homeVm)
     }
 }
 
@@ -68,5 +77,32 @@ extension HomeView {
                 }
         }
         .padding(.horizontal)
+    }
+    
+    private func allCoinsList(coins: [CoinModel]) -> some View {
+        List {
+            ForEach(coins) { coin in
+                CoinRowView(coin: coin, showHoldingsCoin: showPortfolio)
+            }
+        }
+        .listStyle(.plain)
+        .listRowInsets(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
+    }
+    
+    private var columnTitle : some View {
+        HStack {
+            Text("Coins")
+            if showPortfolio {
+                Group {
+                    Spacer()
+                    Text("Holdings")
+                }
+            }
+            Spacer()
+            Text("Price")
+        }
+        .font(.caption)
+        .foregroundColor(.theme.secondaryText)
+        .padding([.leading, .top, .trailing])
     }
 }
