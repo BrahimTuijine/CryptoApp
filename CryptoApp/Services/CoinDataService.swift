@@ -32,7 +32,6 @@ class CoinDataService {
                else {
                    throw URLError(.badServerResponse)
                }
-               
                return output.data
            }
            .receive(on: DispatchQueue.main)
@@ -42,7 +41,7 @@ class CoinDataService {
                case .finished :
                    break
                case .failure(let error) :
-                   print(error.localizedDescription)
+                   print(error)
                }
            } receiveValue:{ [weak self] coinsList in
                self?.allCoins = coinsList

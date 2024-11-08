@@ -57,18 +57,19 @@ import Foundation
 struct CoinModel: Identifiable, Codable {
     let id, symbol, name: String
     let image: String
-    let currentPrice : Double
-    let marketCap, rank, fullyDilutedValuation: Int
-    let totalVolume, high24H, low24H: Int
-    let priceChange24H, priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H: Double
-    let circulatingSupply, totalSupply, maxSupply, ath: Int
-    let athChangePercentage: Double
-    let athDate: String
-    let atl, atlChangePercentage: Double
-    let atlDate: String
-    let lastUpdated: String
-    let sparklineIn7D: SparklineIn7D
-    let priceChangePercentage24HInCurrency: Double
+    let currentPrice: Double
+    let marketCap, fullyDilutedValuation: Double?
+    let rank: Int
+    let totalVolume, high24H, low24H: Double?
+    let priceChange24H, priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H: Double?
+    let circulatingSupply, totalSupply, maxSupply, ath: Double?
+    let athChangePercentage: Double?
+    let athDate: String?
+    let atl, atlChangePercentage: Double?
+    let atlDate: String?
+    let lastUpdated: String?
+    let sparklineIn7D: SparklineIn7D?
+    let priceChangePercentage24HInCurrency: Double?
     let currentHoldings: Double?
 
     enum CodingKeys: String, CodingKey {
@@ -107,8 +108,8 @@ struct CoinModel: Identifiable, Codable {
             image: self.image,
             currentPrice: self.currentPrice,
             marketCap: self.marketCap,
-            rank: self.rank,
             fullyDilutedValuation: self.fullyDilutedValuation,
+            rank: self.rank,
             totalVolume: self.totalVolume,
             high24H: self.high24H,
             low24H: self.low24H,
@@ -140,5 +141,5 @@ struct CoinModel: Identifiable, Codable {
 
 // MARK: - SparklineIn7D
 struct SparklineIn7D: Codable {
-    let price: [Double]
+    let price: [Double]?
 }
