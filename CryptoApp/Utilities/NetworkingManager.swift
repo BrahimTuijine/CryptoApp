@@ -41,7 +41,7 @@ class NetworkingManager {
     }
     
     static func handleUrlResponse(completion: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
-            
+        
         guard let response = completion.response as? HTTPURLResponse,
               response.statusCode >= 200 && response.statusCode < 300
         else {

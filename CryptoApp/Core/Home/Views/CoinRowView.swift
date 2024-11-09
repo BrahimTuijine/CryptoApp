@@ -46,13 +46,8 @@ extension CoinRowView {
                   .font(.caption)
                   .foregroundColor(Color.theme.secondaryText)
               
-              AsyncImage(url: URL(string: coin.image)) { image in
-                  image.resizable()
-              } placeholder: {
-                  Color.red
-              }
-              .frame(width: 30, height: 30 )
-              .clipShape(.rect(cornerRadius: 25))
+            CoinImageView(coin: coin)
+                .frame(width: 30, height: 30 )
               
               Text("\(coin.symbol)".uppercased())
                   .foregroundColor(Color.theme.accent)
