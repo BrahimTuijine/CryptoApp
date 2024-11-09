@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA29EC422CDF587A009C7E24 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29EC412CDF587A009C7E24 /* NetworkingManager.swift */; };
 		FA3EC46A2CDCBF8100128D3C /* CryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3EC4692CDCBF8100128D3C /* CryptoApp.swift */; };
 		FA3EC46C2CDCBF8100128D3C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3EC46B2CDCBF8100128D3C /* ContentView.swift */; };
 		FA3EC4712CDCBF8200128D3C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA3EC4702CDCBF8200128D3C /* Preview Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA29EC412CDF587A009C7E24 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		FA3EC4662CDCBF8100128D3C /* CryptoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA3EC4692CDCBF8100128D3C /* CryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoApp.swift; sourceTree = "<group>"; };
 		FA3EC46B2CDCBF8100128D3C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA29EC402CDF584F009C7E24 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FA29EC412CDF587A009C7E24 /* NetworkingManager.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		FA3EC45D2CDCBF8100128D3C = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +83,7 @@
 			children = (
 				FA3EC4692CDCBF8100128D3C /* CryptoApp.swift */,
 				FA3EC46B2CDCBF8100128D3C /* ContentView.swift */,
+				FA29EC402CDF584F009C7E24 /* Utilities */,
 				FA3EC47F2CDCC2B100128D3C /* Extensions */,
 				FAB02C712CDE668F00E522E6 /* Services */,
 				FAD59A652CDD7578006E4E82 /* Models */,
@@ -247,6 +258,7 @@
 				FA3EC4922CDCD11E00128D3C /* CircleBtnAnimationView.swift in Sources */,
 				FA3EC46A2CDCBF8100128D3C /* CryptoApp.swift in Sources */,
 				FA3EC4902CDCC8FE00128D3C /* CircleButtonView.swift in Sources */,
+				FA29EC422CDF587A009C7E24 /* NetworkingManager.swift in Sources */,
 				FA3EC4802CDCC2B100128D3C /* Color.swift in Sources */,
 				FAD59A6B2CDD7CA5006E4E82 /* PreviewProvider.swift in Sources */,
 				FAD59A6F2CDD8726006E4E82 /* Double.swift in Sources */,

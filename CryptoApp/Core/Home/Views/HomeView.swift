@@ -53,7 +53,7 @@ struct HomeView_Previews: PreviewProvider {
 
 extension HomeView {
     private var homeHeader: some View {
-        HStack {
+        HStack { 
             CircleButtonView(iconName: showPortfolio ? "plus" : "info")
                 .animation(.none, value: UUID())
                 .background(
