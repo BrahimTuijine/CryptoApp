@@ -9,28 +9,28 @@ import Foundation
 import SwiftUI
 
 
-protocol MyFileManager {
-    
-    var folderName: String { get set }
-    
-    func createFolderIfNeeded() -> Void
-    
-    func getLocalImage(imageName: String) -> UIImage?
-    
-    func saveLocalImage(image: UIImage, imageName: String) -> Void
-    
-    func getURLForFolder() -> URL?
-}
+//protocol MyFileManager {
+//    
+//    var folderName: String { get set }
+//    
+//    func createFolderIfNeeded() -> Void
+//    
+//    func getLocalImage(imageName: String) -> UIImage?
+//    
+//    func saveLocalImage(image: UIImage, imageName: String) -> Void
+//    
+//    func getURLForFolder() -> URL?
+//}
 
-class LocalFileManager : MyFileManager {
+class LocalFileManager  {
     
     static let instance = LocalFileManager()
     
     private init() {}
     
-    var folderName: String = "cryptoApp"
+    private var folderName: String = "cryptoApp"
     
-    func createFolderIfNeeded() {
+    private func createFolderIfNeeded() {
         guard let url = getURLForFolder() else { return }
         
         let fileManager = FileManager.default
@@ -70,7 +70,7 @@ class LocalFileManager : MyFileManager {
         }
     }
     
-    internal func getURLForFolder() -> URL? {
+    private func getURLForFolder() -> URL? {
         guard let url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {return nil}
         
         // add folder name for my app -> path/"cryptoApp"

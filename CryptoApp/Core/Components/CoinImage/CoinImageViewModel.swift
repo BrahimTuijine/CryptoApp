@@ -18,7 +18,7 @@ class CoinImageViewModel: ObservableObject {
     private let coinImageService : CoinImageServices
     
     init(coin: CoinModel) {
-        self.coinImageService = CoinImageServices(urlImage: coin.image)
+        self.coinImageService = CoinImageServices(coin: coin)
         getImage()
     }
     
