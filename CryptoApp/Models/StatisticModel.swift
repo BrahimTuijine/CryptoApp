@@ -8,7 +8,8 @@
 import Foundation
 
 
-struct StatisticModel {
+struct StatisticModel: Identifiable {
+    let id: String = UUID().uuidString
     let title: String
     let value: String
     let percentageChange: Double?

@@ -23,6 +23,8 @@
 		FAA2A6F62CE0A7E4004ED778 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2A6F52CE0A7E4004ED778 /* SearchBarView.swift */; };
 		FAA2A6F82CE0B933004ED778 /* UiApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2A6F72CE0B933004ED778 /* UiApplication.swift */; };
 		FAA2A6FA2CE0C81D004ED778 /* StatisticModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2A6F92CE0C81D004ED778 /* StatisticModel.swift */; };
+		FAA2A6FC2CE0C9E0004ED778 /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2A6FB2CE0C9E0004ED778 /* StatisticView.swift */; };
+		FAA2A6FE2CE166B0004ED778 /* HomeStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2A6FD2CE166B0004ED778 /* HomeStatView.swift */; };
 		FAB02C732CDE66DE00E522E6 /* CoinDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB02C722CDE66DE00E522E6 /* CoinDataService.swift */; };
 		FACF627D2CDE178C0035EF90 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF627C2CDE178C0035EF90 /* HomeViewModel.swift */; };
 		FAD59A672CDD7586006E4E82 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD59A662CDD7586006E4E82 /* CoinModel.swift */; };
@@ -49,6 +51,8 @@
 		FAA2A6F52CE0A7E4004ED778 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		FAA2A6F72CE0B933004ED778 /* UiApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiApplication.swift; sourceTree = "<group>"; };
 		FAA2A6F92CE0C81D004ED778 /* StatisticModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticModel.swift; sourceTree = "<group>"; };
+		FAA2A6FB2CE0C9E0004ED778 /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
+		FAA2A6FD2CE166B0004ED778 /* HomeStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatView.swift; sourceTree = "<group>"; };
 		FAB02C722CDE66DE00E522E6 /* CoinDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDataService.swift; sourceTree = "<group>"; };
 		FACF627C2CDE178C0035EF90 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		FAD59A662CDD7586006E4E82 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 			children = (
 				FA3EC48B2CDCC60900128D3C /* HomeView.swift */,
 				FAD59A682CDD7BD4006E4E82 /* CoinRowView.swift */,
+				FAA2A6FD2CE166B0004ED778 /* HomeStatView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 				FA29EC432CDF6630009C7E24 /* CoinImage */,
 				FA3EC48E2CDCC8D300128D3C /* CircleButton */,
 				FAA2A6F52CE0A7E4004ED778 /* SearchBarView.swift */,
+				FAA2A6FB2CE0C9E0004ED778 /* StatisticView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -286,11 +292,13 @@
 				FACF627D2CDE178C0035EF90 /* HomeViewModel.swift in Sources */,
 				FA7C6CFF2CE01C14002B4CE2 /* LocalFileManager.swift in Sources */,
 				FA3EC46C2CDCBF8100128D3C /* ContentView.swift in Sources */,
+				FAA2A6FC2CE0C9E0004ED778 /* StatisticView.swift in Sources */,
 				FA3EC48C2CDCC60900128D3C /* HomeView.swift in Sources */,
 				FA29EC452CDF6653009C7E24 /* CoinImageView.swift in Sources */,
 				FA3EC4922CDCD11E00128D3C /* CircleBtnAnimationView.swift in Sources */,
 				FAA2A6F82CE0B933004ED778 /* UiApplication.swift in Sources */,
 				FA3EC46A2CDCBF8100128D3C /* CryptoApp.swift in Sources */,
+				FAA2A6FE2CE166B0004ED778 /* HomeStatView.swift in Sources */,
 				FAA2A6F62CE0A7E4004ED778 /* SearchBarView.swift in Sources */,
 				FA3EC4902CDCC8FE00128D3C /* CircleButtonView.swift in Sources */,
 				FA29EC422CDF587A009C7E24 /* NetworkingManager.swift in Sources */,
