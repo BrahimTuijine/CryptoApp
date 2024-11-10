@@ -28,7 +28,7 @@ struct SearchBarView: View {
                         .foregroundColor(.theme.accent)
                         .opacity(vm.searchText.isEmpty ? 0 : 1)
                         .onTapGesture {
-                            UIApplication.shared.endEditing()
+                            UIApplication.shared.endEditing() 
                             vm.searchText = ""
                         }
                     , alignment: .trailing

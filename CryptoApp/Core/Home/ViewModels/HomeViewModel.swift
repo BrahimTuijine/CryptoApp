@@ -21,13 +21,31 @@ class HomeViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     init() {
-        addCoinsSubscriber()
+        addSubscribers()
     }
     
-    func addCoinsSubscriber() -> Void {
-        dataService.$allCoins.sink { [weak self] coins in
-            self?.allCoins = coins
-        }
-        .store(in: &cancellables)
+    func addSubscribers() -> Void {
+        
+        // update allCoins
+        $searchText
+            .combineLatest(dataService.$allCoins)
+            .map { (text, coins) -> [CoinModel] in
+                guard !text.isEmpty else { return coins}
+                
+                return coins.filter({ coin in
+                    let lowerName = coin.name.lowercased()
+                    let lowerSymbol = coin.symbol.lowercased()
+                    let lowerText = text.lowercased()
+                    
+                    return lowerName.contains(lowerText) || lowerSymbol.contains(lowerText)
+                })
+                
+            }
+            .sink(receiveValue: { [weak self] coins in
+                self?.allCoins = coins
+            })
+            .store(in: &cancellables)
+        
+        
     }
 }
