@@ -23,6 +23,8 @@ struct HomeView: View {
             VStack {
                 homeHeader
                 
+                SearchBarView()
+                
                 columnTitle
                 
                 if !showPortfolio {
@@ -105,4 +107,5 @@ extension HomeView {
         .foregroundColor(.theme.secondaryText)
         .padding([.leading, .top, .trailing])
     }
+    
 }
