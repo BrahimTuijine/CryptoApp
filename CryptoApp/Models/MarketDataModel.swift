@@ -169,11 +169,11 @@ import Foundation
 
 // MARK: - MarketDataModel
 struct MarketDataModel: Codable {
-    let data: DataClass?
+    let data: MarketData?
 }
 
 // MARK: - DataClass
-struct DataClass: Codable {
+struct MarketData: Codable {
     let totalMarketCap, totalVolume, marketCapPercentage: [String: Double]
     let marketCapChangePercentage24HUsd: Double
 
@@ -185,22 +185,26 @@ struct DataClass: Codable {
 
     }
     
+    private func currencyCheck(key: String) -> Bool {
+        key.contains("usd")
+    }
+    
     var marketCap: String {
-        if let item = totalMarketCap.first(where: {$0.key == "usd"}) {
+        if let item = totalMarketCap.first(where: {currencyCheck(key: $0.key)}) {
             return "\(item.value)"
         }
         return ""
     }
     
     var volume: String {
-        if let item = totalVolume.first(where: {$0.key == "usd"}) {
+        if let item = totalVolume.first(where: {currencyCheck(key: $0.key)}) {
             return "\(item.value)"
         }
         return ""
     }
     
     var btcDominance: String {
-        if let item = marketCapPercentage.first(where: {$0.key == "usd"}) {
+        if let item = marketCapPercentage.first(where: {currencyCheck(key: $0.key)}) {
             return item.value.asPercentString()
         }
         return ""

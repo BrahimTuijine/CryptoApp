@@ -14,18 +14,18 @@ struct HomeStatView: View {
     @Binding var showPortfolio: Bool
     
     var body: some View {
-        HStack {
+        HStack(spacing: 0.0) {
             ForEach(vm.statistics) { stat in
                 StatisticView(statistic: stat)
                     .frame(width: UIScreen.main.bounds.width / 3)
             }
         }
         .frame(width: UIScreen.main.bounds.width,
-               alignment: showPortfolio ?  .trailing : .leading)
+               alignment: showPortfolio ? .trailing : .leading)
     }
 }
 
 #Preview {
-    HomeStatView(showPortfolio: .constant(false))
+    HomeStatView(showPortfolio: .constant(true))
         .environmentObject(DeveloperPreview.instance.homeVm)
 }

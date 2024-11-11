@@ -10,7 +10,7 @@ import Combine
 
 class NetworkingManager {
     
-    enum NetworkingError: LocalizedError {
+    private  enum NetworkingError: LocalizedError {
         case badURLResponse(url: URL)
         case unknown
         
@@ -36,11 +36,11 @@ class NetworkingManager {
         case .finished :
             break
         case .failure(let error) :
-            print(error.localizedDescription)
+            print(error)
         }
     }
     
-    static func handleUrlResponse(completion: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
+    private static func handleUrlResponse(completion: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
         
         guard let response = completion.response as? HTTPURLResponse,
               response.statusCode >= 200 && response.statusCode < 300
