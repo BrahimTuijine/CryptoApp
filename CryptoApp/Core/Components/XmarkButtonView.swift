@@ -21,7 +21,5 @@ struct XmarkButtonView: View {
 }
 
 #Preview {
-    XmarkButtonView {
-        
-    }
+    XmarkButtonView {}
 }
