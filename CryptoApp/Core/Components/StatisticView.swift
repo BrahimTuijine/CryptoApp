@@ -28,7 +28,6 @@ struct StatisticView: View {
             Text(statistic.value)
                 .foregroundColor(Color.theme.accent)
                 .font(.headline)
-                .fontWeight(.semibold)
             
             
                 HStack {
