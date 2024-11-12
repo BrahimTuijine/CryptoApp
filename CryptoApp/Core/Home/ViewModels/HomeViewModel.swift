@@ -67,6 +67,7 @@ class HomeViewModel: ObservableObject {
         isLoading = true
         coindataService.getAllCoins()
         marketDataService.getMarketData()
+        HapticsManager.notification(type: .success)
     }
     
     func filterPortfolioCoins(portfolioData: [PortfolioEntity], allCoins: [CoinModel] ) -> [CoinModel] {
