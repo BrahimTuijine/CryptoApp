@@ -19,6 +19,8 @@ class HomeViewModel: ObservableObject {
     
     @Published var statistics: [StatisticModel] = []
     
+    @Published var isLoading: Bool = false
+    
     private let coindataService = CoinDataService()
     private let marketDataService = MarketDataService()
     private let portfolioDataService = PortfolioDataService()
@@ -54,9 +56,17 @@ class HomeViewModel: ObservableObject {
             .combineLatest($allCoins)
             .map(filterPortfolioCoins)
             .sink { [weak self] coins in
-                self?.portfolioCoins = coins
+                guard let self = self else {return}
+                self.portfolioCoins = coins
+                self.isLoading = false
             }
             .store(in: &cancellables)
+    }
+    
+    func reloadData() -> Void {
+        isLoading = true
+        coindataService.getAllCoins()
+        marketDataService.getMarketData()
     }
     
     func filterPortfolioCoins(portfolioData: [PortfolioEntity], allCoins: [CoinModel] ) -> [CoinModel] {

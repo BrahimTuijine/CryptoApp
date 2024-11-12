@@ -16,10 +16,10 @@ class MarketDataService: ObservableObject {
     private var cancellable: AnyCancellable?
     
     init() {
-        marketDataSubscription()
+        getMarketData()
     }
     
-    private func marketDataSubscription() -> Void {
+    func getMarketData() -> Void {
         
         guard let url = URL(string: "https://api.coingecko.com/api/v3/global") else { return }
         
