@@ -47,6 +47,28 @@ class HomeViewModel: ObservableObject {
                 self?.statistics = statistics
             }
             .store(in: &cancellables)
+        
+        // update portfolioCoins
+        portfolioDataService.$portfolio
+            .combineLatest($allCoins)
+            .map(filterPortfolioCoins)
+            .sink { [weak self] coins in
+                self?.portfolioCoins = coins
+            }
+            .store(in: &cancellables)
+    }
+    
+    func filterPortfolioCoins(portfolioData: [PortfolioEntity], allCoins: [CoinModel] ) -> [CoinModel] {
+        allCoins.compactMap { (coin) -> CoinModel? in
+            guard let entity = portfolioData.first(where: {$0.coinId == coin.id}) else {
+                return nil
+            }
+            return coin.updateHoldings(amount: entity.amount)
+        }
+    }
+    
+    func updatePortfolio(id: String, amount: Double) -> Void {
+        portfolioDataService.updatePortfolio(id: id, amount: amount)
     }
     
     private func marketDataToStatisticModel(marketData: MarketData?) -> [StatisticModel] {

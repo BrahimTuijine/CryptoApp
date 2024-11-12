@@ -24,7 +24,7 @@ class PortfolioDataService: ObservableObject {
  
     @Published var portfolio: [PortfolioEntity] = []
     
-    private let containerName: String = "portfolio"
+    private let containerName: String = "PortfolioContainer"
     
     private let entityName: String = "PortfolioEntity"
     
@@ -34,7 +34,7 @@ class PortfolioDataService: ObservableObject {
         container = NSPersistentContainer(name: containerName)
         container.loadPersistentStores { description, error in
             if let error = error {
-                print("error loading core data \(error.localizedDescription)")
+                print("error loading core data \(error)")
             } else {
                 self.get()
                 print ("Successfully loaded core data!")
