@@ -58,7 +58,7 @@ class HomeViewModel: ObservableObject {
             .sink { [weak self] coins in
                 guard let self = self else {return}
                 self.portfolioCoins = coins
-                self.isLoading = false
+                self.isLoading = false 
             }
             .store(in: &cancellables)
     }
