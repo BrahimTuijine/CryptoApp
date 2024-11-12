@@ -42,6 +42,7 @@ class HomeViewModel: ObservableObject {
         
         // update marketData
         marketDataService.$marketData
+            .combineLatest($portfolioCoins)
             .map(marketDataToStatisticModel)
             .sink { [weak self] statistics in
                 self?.statistics = statistics
@@ -71,7 +72,7 @@ class HomeViewModel: ObservableObject {
         portfolioDataService.updatePortfolio(id: id, amount: amount)
     }
     
-    private func marketDataToStatisticModel(marketData: MarketData?) -> [StatisticModel] {
+    private func marketDataToStatisticModel(marketData: MarketData?, portfolioCoins: [CoinModel]) -> [StatisticModel] {
         var stats : [StatisticModel] = []
         
         guard let data = marketData else { return stats }
@@ -82,7 +83,26 @@ class HomeViewModel: ObservableObject {
         
         let btcDominance = StatisticModel(title: "BTC Dominance", value: data.btcDominance)
         
-        let portfolio = StatisticModel(title: "Portfolio Value", value: "$0.00", percentageChange: 0)
+        let portfolioValue = portfolioCoins
+            .map({ $0.currentHoldingValue })
+            .reduce(0, +)
+        
+        let previousValue = portfolioCoins
+            .map { (coin)-> Double in
+                let currentValue = coin.currentHoldingValue
+                let percentChange = coin.priceChangePercentage24H ?? 0 / 100
+                let previousValue = currentValue / (1 + percentChange)
+                return previousValue
+            }
+            .reduce(0, +)
+        
+        let percentageChange = ((portfolioValue - previousValue) / previousValue) * 100
+        
+        
+        let portfolio = StatisticModel(
+            title: "Portfolio Value",
+            value: portfolioValue.asCurrency(maximumFractionDigits: 2),
+            percentageChange: percentageChange)
         
         stats.append(contentsOf: [marketCap, volume , btcDominance,  portfolio])
         

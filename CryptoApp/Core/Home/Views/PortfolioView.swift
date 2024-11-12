@@ -182,5 +182,6 @@ extension PortfolioView {
     private func removeSelectedCoin() -> Void {
         selectedCoin = nil
         quantityField = ""
+        vm.searchText = ""
     }
 }
