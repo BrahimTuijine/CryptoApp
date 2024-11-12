@@ -46,8 +46,13 @@ struct PortfolioView: View {
                     saveBtn
                 }
             }
+            .onChange(of: vm.searchText) { _, newValue in
+                if newValue.isEmpty {
+                    removeSelectedCoin()
+                }
+            }
+
         }
-       
     }
 }
 

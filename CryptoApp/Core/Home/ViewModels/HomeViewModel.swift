@@ -21,6 +21,7 @@ class HomeViewModel: ObservableObject {
     
     private let coindataService = CoinDataService()
     private let marketDataService = MarketDataService()
+    private let portfolioDataService = PortfolioDataService()
     private var cancellables = Set<AnyCancellable>()
     
     init() {
