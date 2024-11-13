@@ -12,14 +12,11 @@ import Combine
 class HomeViewModel: ObservableObject {
     
     @Published var allCoins: [CoinModel] = []
-    
     @Published var portfolioCoins: [CoinModel] = []
-    
-    @Published var searchText: String = ""
-    
     @Published var statistics: [StatisticModel] = []
-    
+    @Published var searchText: String = ""
     @Published var isLoading: Bool = false
+    @Published var sortOptrion: sortOption = .holdings
     
     private let coindataService = CoinDataService()
     private let marketDataService = MarketDataService()
@@ -28,6 +25,10 @@ class HomeViewModel: ObservableObject {
     
     init() {
         addSubscribers()
+    }
+    
+    enum sortOption {
+        case rank, rankReversed, holdings, holdingsReversed, price, priceReversed
     }
     
     func addSubscribers() -> Void {
@@ -42,15 +43,6 @@ class HomeViewModel: ObservableObject {
             })
             .store(in: &cancellables)
         
-        // update marketData
-        marketDataService.$marketData
-            .combineLatest($portfolioCoins)
-            .map(marketDataToStatisticModel)
-            .sink { [weak self] statistics in
-                self?.statistics = statistics
-            }
-            .store(in: &cancellables)
-        
         // update portfolioCoins
         portfolioDataService.$portfolio
             .combineLatest($allCoins)
@@ -58,7 +50,16 @@ class HomeViewModel: ObservableObject {
             .sink { [weak self] coins in
                 guard let self = self else {return}
                 self.portfolioCoins = coins
-                self.isLoading = false 
+                self.isLoading = false
+            }
+            .store(in: &cancellables)
+        
+        // update marketData
+        marketDataService.$marketData
+            .combineLatest($portfolioCoins)
+            .map(marketDataToStatisticModel)
+            .sink { [weak self] statistics in
+                self?.statistics = statistics
             }
             .store(in: &cancellables)
     }
