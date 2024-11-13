@@ -25,6 +25,9 @@ struct CoinRowView: View {
             rightColumn
         }
         .font(.subheadline)
+        .background(
+            Color.theme.background
+         )
     }
 }
 
@@ -68,7 +71,7 @@ extension CoinRowView {
         }
     }
     
-    var rightColumn : some View {
+    var rightColumn : some View { 
         return VStack(alignment: .trailing) {
             Text(coin.currentPrice.asCurrency(maximumFractionDigits: 6))
                 .foregroundColor(Color.theme.accent)

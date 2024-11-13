@@ -27,11 +27,9 @@ class CoinImageServices {
     
     private func getCoinImage(coin: CoinModel) -> Void {
         guard let localImage = fileManager.getLocalImage(imageName: coin.id) else {
-            print("Downloading image now")
             downloadImage()
             return
         }
-        print("Retrieved image from File Manager!")
         self.image = localImage
     }
     
