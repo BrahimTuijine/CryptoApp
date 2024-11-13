@@ -107,15 +107,15 @@ extension HomeView {
     
     private var columnTitle : some View {
         HStack {
-            Text("Coins")
+            sortButton(text: "Coins", defaultSort: .rank, secondSort: .rankReversed)
             if showPortfolio {
                 Group {
                     Spacer()
-                    Text("Holdings")
+                    sortButton(text: "Holdings", defaultSort: .holdings, secondSort: .holdingsReversed)
                 }
             }
             Spacer()
-            Text("Price")
+            sortButton(text: "Price", defaultSort: .price, secondSort: .priceReversed)
             
             Button(action: {
                 withAnimation(.linear(duration: 2.0)) {
@@ -129,6 +129,24 @@ extension HomeView {
         .font(.caption)
         .foregroundColor(.theme.secondaryText)
         .padding([.leading, .top, .trailing])
+    }
+    
+    func sortButton(text: String, defaultSort: sortOption, secondSort: sortOption) -> some View {
+        HStack {
+            Text(text)
+            Image(systemName: "chevron.down")
+                .rotationEffect(Angle(degrees: vm.sortOptions == defaultSort ? 0 : 180))
+                .opacity([defaultSort, secondSort].contains(vm.sortOptions) ? 1 : 0)
+        }
+        .onTapGesture {
+            withAnimation(.default) {
+                if vm.sortOptions == defaultSort {
+                    vm.sortOptions = secondSort
+                } else {
+                    vm.sortOptions = defaultSort
+                }
+            }
+        }
     }
     
 }

@@ -9,6 +9,11 @@ import Foundation
 import Combine
 
 
+
+enum sortOption {
+    case rank, rankReversed, holdings, holdingsReversed, price, priceReversed
+}
+
 class HomeViewModel: ObservableObject {
     
     @Published var allCoins: [CoinModel] = []
@@ -25,10 +30,6 @@ class HomeViewModel: ObservableObject {
     
     init() {
         addSubscribers()
-    }
-    
-    enum sortOption {
-        case rank, rankReversed, holdings, holdingsReversed, price, priceReversed
     }
     
     func addSubscribers() -> Void {
