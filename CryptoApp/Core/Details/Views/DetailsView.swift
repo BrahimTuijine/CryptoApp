@@ -43,29 +43,23 @@ struct DetailsView: View {
                 Text("")
                     .frame(height: 150)
                 
-                Text("Overview")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.theme.accent)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                statsticTitle(title: "Overview")
+                
                 Divider()
                 
                 gridView {
-                    ForEach(0..<6) { _ in
-                        StatisticView(statistic: StatisticModel(title: "Title", value: "value"))
+                    ForEach(vm.overviewStatistics) { overview in
+                        StatisticView(statistic: overview)
                     }
                 }
+            
+                statsticTitle(title: "Additional Details")
                 
-                Text("Additional Details")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.theme.accent)
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 Divider()
                 
                 gridView {
-                    ForEach(0..<6) { _ in
-                        StatisticView(statistic: StatisticModel(title: "Title", value: "value"))
+                    ForEach(vm.additionalStatistics) { additional in
+                        StatisticView(statistic: additional)
                     }
                 }
             }
@@ -85,7 +79,7 @@ struct DetailsView: View {
 
 extension DetailsView {
     
-    func gridView<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+   private func gridView<Content: View>(@ViewBuilder content: () -> Content) -> some View {
         LazyVGrid(
             columns: column,
             alignment: .leading,
@@ -93,4 +87,13 @@ extension DetailsView {
             content: content
         )
     }
+    
+    private func statsticTitle(title: String) -> some View {
+        Text(title)
+            .font(.title)
+            .bold()
+            .foregroundColor(.theme.accent)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    
 }
