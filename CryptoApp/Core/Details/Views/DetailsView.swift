@@ -44,19 +44,14 @@ struct DetailsView: View {
                     .frame(height: 150)
                 
                 statsticTitle(title: "Overview")
-                
                 Divider()
-                
                 gridView {
                     ForEach(vm.overviewStatistics) { overview in
                         StatisticView(statistic: overview)
                     }
                 }
-            
                 statsticTitle(title: "Additional Details")
-                
                 Divider()
-                
                 gridView {
                     ForEach(vm.additionalStatistics) { additional in
                         StatisticView(statistic: additional)
@@ -66,7 +61,7 @@ struct DetailsView: View {
             .padding()
             
         }
-        .navigationTitle(vm.coin.name)
+        .navigationTitle(vm.coinModel.name)
         
     }
 }

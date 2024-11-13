@@ -13,12 +13,12 @@ class CoinDetailsViewModel: ObservableObject {
     @Published var overviewStatistics: [StatisticModel] = []
     @Published var additionalStatistics: [StatisticModel] = []
     
-    @Published var coin: CoinModel
+    @Published var coinModel: CoinModel
     let coinDetailsService : CoinDetailsService
     var cancellables = Set<AnyCancellable>()
     
     init(coin: CoinModel) {
-        self.coin = coin
+        self.coinModel = coin
         self.coinDetailsService = CoinDetailsService(coin: coin)
         addSubscribers()
     }
@@ -26,11 +26,12 @@ class CoinDetailsViewModel: ObservableObject {
     private func addSubscribers() -> Void {
         
         coinDetailsService.$coinsDetails
-            .combineLatest($coin)
+            .combineLatest($coinModel)
             .map(detailsToStatistics)
             .sink { [weak self] returnedArrays in
-                self?.overviewStatistics = returnedArrays.overview
-                self?.additionalStatistics = returnedArrays.additional
+                guard let self = self else {return}
+                self.overviewStatistics = returnedArrays.overview
+                self.additionalStatistics = returnedArrays.additional
             }
             .store(in: &cancellables)
     }
@@ -39,6 +40,14 @@ class CoinDetailsViewModel: ObservableObject {
     -> (overview: [StatisticModel], additional: [StatisticModel])
     {
         // overview
+        let overviewArray = createOverviewArray(coin: coin)
+        // additional
+        let additionalArray = createAdditionalArray(coinDetail: coinDetail, coin: coin)
+
+        return (overviewArray, additionalArray)
+    }
+    
+   private func createOverviewArray(coin: CoinModel) -> [StatisticModel] {
         let priceStat : StatisticModel  = {
             let price = coin.currentPrice.asCurrency(maximumFractionDigits: 6)
             let priceChange = coin.priceChangePercentage24H
@@ -57,9 +66,10 @@ class CoinDetailsViewModel: ObservableObject {
         let volume = "S" + (coin.totalVolume?.formattedWithAbbreviations() ?? "")
         let volumeStat = StatisticModel(title: "Volume", value: volume)
         
-        let overviewArray :  [StatisticModel] = [priceStat, marketCapStat, rankStat, volumeStat]
-        
-        // additional
+        return [priceStat, marketCapStat, rankStat, volumeStat]
+    }
+    
+    private func createAdditionalArray(coinDetail: CoinDetailsModel?, coin: CoinModel) -> [StatisticModel] {
         let high = coin.high24H?.asCurrency(maximumFractionDigits: 6) ?? "n/a"
         let highStat = StatisticModel(title: "24h High",value: high)
         
@@ -81,11 +91,7 @@ class CoinDetailsViewModel: ObservableObject {
         let hashing = coinDetail?.hashingAlgorithm ?? "n/a"
         let hashingStat = StatisticModel(title:"Hashing Algorithm", value: hashing)
         
-        let additionalArray: [StatisticModel] = [
-            highStat, lowStat, priceChangeStat, marketCapChangeStat, blockStat, hashingStat
-        ]
-        
-        return (overviewArray, additionalArray)
+        return [ highStat, lowStat, priceChangeStat, marketCapChangeStat, blockStat, hashingStat]
     }
     
 }
