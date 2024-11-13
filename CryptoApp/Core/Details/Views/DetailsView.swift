@@ -22,16 +22,16 @@ struct DetailsLoadingView : View {
 
 struct DetailsView: View {
     
-    let coin : CoinModel
+    @StateObject var vm: CoinDetailsViewModel
     
     init(coin: CoinModel) {
-        self.coin = coin
+        _vm = StateObject(wrappedValue: CoinDetailsViewModel(coin: coin))
         print("screen initialized \(coin.name)")
     }
     
     var body: some View {
         
-        Text(coin.name)
+        Text("hello brahim")
         
     }
 }
