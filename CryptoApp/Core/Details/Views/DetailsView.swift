@@ -62,6 +62,11 @@ struct DetailsView: View {
             
         }
         .navigationTitle(vm.coinModel.name)
+        .toolbar(content: {
+            ToolbarItem(placement: .topBarTrailing) {
+                navigationBarTrailingItem
+            }
+        })
         
     }
 }
@@ -73,6 +78,16 @@ struct DetailsView: View {
 }
 
 extension DetailsView {
+    
+    private var navigationBarTrailingItem : some View {
+        HStack {
+            Text(vm.coinModel.symbol.uppercased())
+                .font(.headline)
+                .foregroundColor(.theme.secondaryText)
+            CoinImageView(coin: vm.coinModel)
+                .frame(width: 25, height: 25)
+        }
+    }
     
    private func gridView<Content: View>(@ViewBuilder content: () -> Content) -> some View {
         LazyVGrid(
