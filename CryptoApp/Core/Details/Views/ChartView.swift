@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ChartView: View {
     
+    @State var isChartAnimated: Bool = false
+    
     let data : [Double]
     let maxY : Double
     let minY : Double
@@ -64,13 +66,15 @@ extension ChartView {
                     path.addLine(to: CGPoint(x: xPosition, y: yPosition))
                 }
             }
-            .trim(from: 0, to: 0.9)
+            .trim(from: 0, to: isChartAnimated ? 1 : 0)
             .stroke(lineColor,
                     style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round)
             )
         }
         .onAppear {
-            
+            withAnimation(.easeInOut(duration: 3)) {
+                isChartAnimated = true
+            }
         }
     }
     
