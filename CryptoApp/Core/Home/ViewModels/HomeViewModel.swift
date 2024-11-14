@@ -23,6 +23,7 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var sortOptions: sortOption = .holdings
     
+    
     private let coindataService = CoinDataService()
     private let marketDataService = MarketDataService()
     private let portfolioDataService = PortfolioDataService()
@@ -64,6 +65,8 @@ class HomeViewModel: ObservableObject {
                 self.isLoading = false
             }
             .store(in: &cancellables)
+    
+        
     }
     
     func reloadData() -> Void {
