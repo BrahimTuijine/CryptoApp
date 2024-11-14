@@ -9,14 +9,13 @@ import SwiftUI
 
 struct ChartView: View {
     
-    @State var isChartAnimated: Bool = false
-    
-    let data : [Double]
-    let maxY : Double
-    let minY : Double
-    let lineColor : Color
-    let startingDate: Date
-    let endingDate: Date
+    private let data : [Double]
+    private let maxY : Double
+    private let minY : Double
+    private let lineColor : Color
+    private let startingDate: Date
+    private let endingDate: Date
+    @State private var showLinePercentage: CGFloat = 0
     
     init(coin: CoinModel) {
         self.data = coin.sparklineIn7D?.price ?? []
@@ -35,9 +34,10 @@ struct ChartView: View {
             chartView
                 .frame(height: 200)
                 .background(chartBackground)
-                .overlay(chartYAssis,alignment: .leading)
+                .overlay(chartYAxis.padding(.horizontal, 4) ,alignment: .leading)
             
             dateLabels
+                .padding(.horizontal, 4)
         }
         .font(.caption)
         .foregroundColor(.theme.secondaryText)
@@ -66,14 +66,18 @@ extension ChartView {
                     path.addLine(to: CGPoint(x: xPosition, y: yPosition))
                 }
             }
-            .trim(from: 0, to: isChartAnimated ? 1 : 0)
+            .trim(from: 0, to: showLinePercentage)
             .stroke(lineColor,
                     style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round)
             )
+            .shadow(color: lineColor, radius: 10, x: 0.0, y: 10)
+            .shadow(color: lineColor.opacity(0.5),radius: 10, x: 0.0,y: 20)
+            .shadow(color:lineColor.opacity(0.2),radius:10, x: 0.0, y: 30)
+            .shadow(color: lineColor.opacity(0.1), radius: 10,x: 0.0,y: 40)
         }
         .onAppear {
             withAnimation(.easeInOut(duration: 3)) {
-                isChartAnimated = true
+                showLinePercentage = 1
             }
         }
     }
@@ -88,7 +92,7 @@ extension ChartView {
         }
     }
     
-    private var chartYAssis: some View {
+    private var chartYAxis: some View {
         VStack {
             Text(maxY.formattedWithAbbreviations())
             Spacer()

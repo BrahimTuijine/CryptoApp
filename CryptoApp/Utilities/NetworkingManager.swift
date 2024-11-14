@@ -44,7 +44,9 @@ class NetworkingManager {
         
         guard let response = completion.response as? HTTPURLResponse,
               response.statusCode >= 200 && response.statusCode < 300
+        
         else {
+            print(completion.data.description)
             throw NetworkingError.badURLResponse(url: url)
         }
         return completion.data

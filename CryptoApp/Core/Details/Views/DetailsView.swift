@@ -33,32 +33,33 @@ struct DetailsView: View {
     
     init(coin: CoinModel) {
         _vm = StateObject(wrappedValue: CoinDetailsViewModel(coin: coin))
-        print("screen initialized \(coin.name)")
     }
     
     var body: some View {
         
         ScrollView {
-            VStack(spacing: 20.0) {
-                Text("")
-                    .frame(height: 150)
-                
-                statsticTitle(title: "Overview")
-                Divider()
-                gridView {
-                    ForEach(vm.overviewStatistics) { overview in
-                        StatisticView(statistic: overview)
+            
+            VStack {
+                ChartView(coin: vm.coinModel)
+                    .padding(.top )
+                VStack(spacing: 20.0) {
+                    statsticTitle(title: "Overview")
+                    Divider()
+                    gridView {
+                        ForEach(vm.overviewStatistics) { overview in
+                            StatisticView(statistic: overview)
+                        }
+                    }
+                    statsticTitle(title: "Additional Details")
+                    Divider()
+                    gridView {
+                        ForEach(vm.additionalStatistics) { additional in
+                            StatisticView(statistic: additional)
+                        }
                     }
                 }
-                statsticTitle(title: "Additional Details")
-                Divider()
-                gridView {
-                    ForEach(vm.additionalStatistics) { additional in
-                        StatisticView(statistic: additional)
-                    }
-                }
+                .padding()
             }
-            .padding()
             
         }
         .navigationTitle(vm.coinModel.name)
