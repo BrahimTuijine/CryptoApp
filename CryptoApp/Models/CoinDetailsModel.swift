@@ -114,6 +114,10 @@ struct CoinDetailsModel: Codable {
         case previewListing = "preview_listing"
         case description, links
     }
+    
+    var readableDescription : String? {
+        return description?.en?.removeHTMLOccurances
+    }
 }
 
 // MARK: - Description

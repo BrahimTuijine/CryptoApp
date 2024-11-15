@@ -41,7 +41,7 @@ class CoinDetailsViewModel: ObservableObject {
         coinDetailsService.$coinsDetails
             .sink { [weak self] coinDetails in
                 guard let self = self else {return}
-                self.description = coinDetails?.description?.en
+                self.description = coinDetails?.readableDescription
                 self.websiteUrl = coinDetails?.links?.homepage?.first
                 self.redditUrl = coinDetails?.links?.subredditURL
                

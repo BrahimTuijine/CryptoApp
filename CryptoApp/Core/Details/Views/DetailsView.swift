@@ -30,6 +30,7 @@ struct DetailsView: View {
     ]
     
     private let spacing: CGFloat = 30
+    @State var showMore: Bool = false
     
     init(coin: CoinModel) {
         _vm = StateObject(wrappedValue: CoinDetailsViewModel(coin: coin))
@@ -45,6 +46,9 @@ struct DetailsView: View {
                 VStack(spacing: 20.0) {
                     statsticTitle(title: "Overview")
                     Divider()
+                    
+                    descriptionSection
+                    
                     gridView {
                         ForEach(vm.overviewStatistics) { overview in
                             StatisticView(statistic: overview)
@@ -105,6 +109,30 @@ extension DetailsView {
             .bold()
             .foregroundColor(.theme.accent)
             .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    
+    private var descriptionSection : some View {
+        VStack(alignment: .leading) {
+            if let description = vm.description,
+               !description.isEmpty {
+                Text(description)
+                .lineLimit(showMore ? nil : 3)
+                .font(.callout)
+                .foregroundColor(.theme.secondaryText)
+                    
+            Text(showMore ? "Less" : "Read more...")
+                .font(.caption)
+                .foregroundColor(.blue)
+                .bold()
+                .underline()
+                .onTapGesture {
+                    withAnimation(.easeInOut) {
+                        showMore.toggle()
+                    }
+                }
+                
+            }
+        }
     }
     
 }

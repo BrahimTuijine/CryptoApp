@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA21722B2CE6B13000013DF8 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21722A2CE6B13000013DF8 /* Date.swift */; };
+		FA21722D2CE6C3C000013DF8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21722C2CE6C3C000013DF8 /* String.swift */; };
 		FA29EC422CDF587A009C7E24 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29EC412CDF587A009C7E24 /* NetworkingManager.swift */; };
 		FA29EC452CDF6653009C7E24 /* CoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29EC442CDF6653009C7E24 /* CoinImageView.swift */; };
 		FA29EC472CDF6EC4009C7E24 /* CoinImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29EC462CDF6EC4009C7E24 /* CoinImageServices.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		FA21722A2CE6B13000013DF8 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		FA21722C2CE6C3C000013DF8 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		FA29EC412CDF587A009C7E24 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		FA29EC442CDF6653009C7E24 /* CoinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageView.swift; sourceTree = "<group>"; };
 		FA29EC462CDF6EC4009C7E24 /* CoinImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageServices.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				FAD59A6E2CDD8726006E4E82 /* Double.swift */,
 				FAA2A6F72CE0B933004ED778 /* UiApplication.swift */,
 				FA21722A2CE6B13000013DF8 /* Date.swift */,
+				FA21722C2CE6C3C000013DF8 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				FA4CABA32CE21AFE0046FC39 /* CoinLogoView.swift in Sources */,
 				FA3EC4902CDCC8FE00128D3C /* CircleButtonView.swift in Sources */,
 				FAA2A7062CE175A8004ED778 /* MarketDataService.swift in Sources */,
+				FA21722D2CE6C3C000013DF8 /* String.swift in Sources */,
 				FA29EC422CDF587A009C7E24 /* NetworkingManager.swift in Sources */,
 				FA29EC492CDF72BF009C7E24 /* CoinImageViewModel.swift in Sources */,
 				FA3EC4802CDCC2B100128D3C /* Color.swift in Sources */,
