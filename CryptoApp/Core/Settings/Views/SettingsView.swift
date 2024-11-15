@@ -20,7 +20,7 @@ struct SettingsView: View {
         NavigationView {
             List {
                 appInfoSection
-                
+                coinGeckoSection
             }
             .tint(.blue)
             .listStyle(.grouped)
@@ -64,5 +64,26 @@ extension SettingsView {
         
     }
     
-    
+    private var coinGeckoSection: some View {
+            Section {
+                VStack(alignment: .leading) {
+                    Image("coingecko")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 100)
+                        .clipShape(RoundedRectangle(cornerRadius: 20.0))
+                    Text("The cryptocurrency data that is used in this app come form a free api from CoinGecko! Prices may be slightly delayed.")
+                        .font(.callout)
+                        .fontWeight(.medium)
+                        .foregroundColor(.theme.accent)
+                }
+                .padding(.vertical)
+                
+                Link("Visit CoinGecko 🥳", destination: coingeckoURL)
+                
+            } header: {
+                Text("CoinGecko")
+            }
+        
+    }
 }
