@@ -61,6 +61,8 @@ struct DetailsView: View {
                             StatisticView(statistic: additional)
                         }
                     }
+                    
+                    webSiteSection
                 }
                 .padding()
             }
@@ -133,6 +135,23 @@ extension DetailsView {
                 
             }
         }
+    }
+    
+    private var webSiteSection : some View {
+        VStack(alignment: .leading, spacing: 10.0) {
+            if let websiteString = vm.websiteUrl,
+               let url = URL(string: websiteString) {
+                Link("Website", destination: url)
+            }
+            
+            if let websiteString = vm.redditUrl,
+               let url = URL(string: websiteString) {
+                Link("Reddit", destination: url)
+            }
+        }
+        .tint(.blue)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .font(.headline)
     }
     
 }
