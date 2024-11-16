@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0C93882CE95F2600C47992 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA0C93872CE95F2600C47992 /* Launch Screen.storyboard */; };
 		FA21722B2CE6B13000013DF8 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21722A2CE6B13000013DF8 /* Date.swift */; };
 		FA21722D2CE6C3C000013DF8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21722C2CE6C3C000013DF8 /* String.swift */; };
 		FA29EC422CDF587A009C7E24 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29EC412CDF587A009C7E24 /* NetworkingManager.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA0C93872CE95F2600C47992 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FA21722A2CE6B13000013DF8 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		FA21722C2CE6C3C000013DF8 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		FA29EC412CDF587A009C7E24 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
@@ -104,6 +106,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA0C93862CE95EFE00C47992 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FA0C93872CE95F2600C47992 /* Launch Screen.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		FA29EC402CDF584F009C7E24 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +208,7 @@
 		FA3EC4892CDCC5BB00128D3C /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				FA0C93862CE95EFE00C47992 /* LaunchScreen */,
 				FACC61982CE806C60065ABD3 /* Settings */,
 				FAA4A0AE2CE4B1100035A371 /* Details */,
 				FA3EC48D2CDCC8A900128D3C /* Components */,
@@ -361,6 +372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0C93882CE95F2600C47992 /* Launch Screen.storyboard in Resources */,
 				FA3EC4712CDCBF8200128D3C /* Preview Assets.xcassets in Resources */,
 				FA3EC4782CDCC1A200128D3C /* Assets.xcassets in Resources */,
 			);
@@ -549,6 +561,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -576,6 +589,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
