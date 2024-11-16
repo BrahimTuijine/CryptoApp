@@ -22,6 +22,7 @@ struct SettingsView: View {
                 appInfoSection
                 coinGeckoSection
                 developerSection
+                applicationSection
             }
             .tint(.blue)
             .listStyle(.grouped)
@@ -107,6 +108,17 @@ extension SettingsView {
             } header: {
                 Text("Developer")
             }
-        
+    }
+    
+    private var applicationSection: some View {
+            Section {
+                Link("Terms of Service", destination: defaultURL)
+                Link("Privacy Policy", destination: defaultURL)
+                Link("Company Website", destination: defaultURL)
+                Link("Learn More", destination: defaultURL)
+                
+            } header: {
+                Text("Application")
+            }
     }
 }
