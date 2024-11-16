@@ -13,6 +13,7 @@ struct HomeView: View {
     
     @State private var showPortfolio: Bool = false
     @State private var showPortfolioSheet: Bool = false
+    @State private var showSettingSheet: Bool = false
     @State private var selectedCoin: CoinModel?
     @State private var showDetailsView: Bool = false
     
@@ -45,9 +46,10 @@ struct HomeView: View {
                 }
                 
                 Spacer(minLength: 0)
-                
-                
             }
+            .sheet(isPresented: $showSettingSheet, content: {
+                SettingsView()
+            })
         }
         .background(
             NavigationLink(
@@ -78,7 +80,12 @@ extension HomeView {
                     CircleBtnAnimationView(animate: $showPortfolio)
                 )
                 .onTapGesture {
-                    showPortfolioSheet = true
+                    if showPortfolio {
+                        showPortfolioSheet.toggle()
+                    } else {
+                        showSettingSheet.toggle()
+                    }
+                    
                 }
             Spacer()
             Text( showPortfolio ? "Portfolio" : "Live Price")
