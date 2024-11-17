@@ -18,22 +18,29 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                appInfoSection
-                coinGeckoSection
-                developerSection
-                applicationSection
-            }
-            .tint(.blue)
-            .listStyle(.grouped)
-            .navigationTitle("Settings")
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    XmarkButtonView {
-                        dismiss.callAsFunction()
+            ZStack {
+                Color.theme.background
+                    .ignoresSafeArea()
+                
+                List {
+                    appInfoSection.listRowBackground(Color.theme.background.opacity(0.5))
+                    coinGeckoSection.listRowBackground(Color.theme.background.opacity(0.5))
+                    developerSection.listRowBackground(Color.theme.background.opacity(0.5))
+                    applicationSection.listRowBackground(Color.theme.background.opacity(0.5))
+                }
+                .tint(.blue)
+                .listStyle(.grouped)
+                .navigationTitle("Settings")
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        XmarkButtonView {
+                            dismiss.callAsFunction()
+                        }
                     }
                 }
             }
+            
+            
         }
         
     }

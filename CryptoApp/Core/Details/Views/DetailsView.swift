@@ -68,6 +68,10 @@ struct DetailsView: View {
             }
             
         }
+        .background(
+            Color.theme.background
+                .ignoresSafeArea()
+        )
         .navigationTitle(vm.coinModel.name)
         .toolbar(content: {
             ToolbarItem(placement: .topBarTrailing) {

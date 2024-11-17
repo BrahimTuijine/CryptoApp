@@ -15,6 +15,8 @@ struct CryptoApp: App {
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor : UIColor(.theme.accent)]
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor : UIColor(.theme.accent)]
+        UINavigationBar.appearance().tintColor = UIColor(.theme.accent)
+        UITableView.appearance().backgroundColor = UIColor.clear
     }
     
     @State var showLaunchView: Bool = true
