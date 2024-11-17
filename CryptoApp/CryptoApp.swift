@@ -26,6 +26,7 @@ struct CryptoApp: App {
                     HomeView()
                         .toolbar(.hidden)
                 }
+                .navigationViewStyle(.stack)
                 .environmentObject(vm)
                 
                 ZStack {

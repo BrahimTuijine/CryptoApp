@@ -41,8 +41,17 @@ struct HomeView: View {
                     allCoinsList(coins: vm.allCoins)
                     .transition(.move(edge: .leading))
                 } else {
-                    allCoinsList(coins: vm.portfolioCoins)
-                    .transition(.move(edge: .trailing))
+                    
+                    ZStack(alignment:.top) {
+                        if vm.portfolioCoins.isEmpty && vm.searchText.isEmpty {
+                            portfolioEmptyList
+                            
+                        } else {
+                            allCoinsList(coins: vm.portfolioCoins)
+                                .transition(.move(edge: .trailing))
+                        }
+                    }
+                    
                 }
                 
                 Spacer(minLength: 0)
@@ -154,7 +163,7 @@ extension HomeView {
         .padding([.leading, .top, .trailing])
     }
     
-    func sortButton(text: String, defaultSort: sortOption, secondSort: sortOption) -> some View {
+   private func sortButton(text: String, defaultSort: sortOption, secondSort: sortOption) -> some View {
         HStack {
             Text(text)
             Image(systemName: "chevron.down")
@@ -170,6 +179,15 @@ extension HomeView {
                 }
             }
         }
+    }
+    
+    private var portfolioEmptyList : some View {
+        Text ("You haven't added any coins to your portfolioyet .Click the + button to get started!")
+            .font(.callout)
+            .foregroundColor(Color.theme.accent)
+            .fontWeight(.medium)
+            .multilineTextAlignment(.center)
+            .padding(50)
     }
     
 }
