@@ -17,13 +17,25 @@ struct CryptoApp: App {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor : UIColor(.theme.accent)]
     }
     
+    @State var showLaunchView: Bool = true
+    
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                HomeView()
-                    .toolbar(.hidden)
+            ZStack {
+                NavigationView {
+                    HomeView()
+                        .toolbar(.hidden)
+                }
+                .environmentObject(vm)
+                
+                ZStack {
+                    if showLaunchView {
+                        LaunchView(showLaunchView: $showLaunchView)
+                            .transition(.move(edge: .leading))
+                    }
+                }
+                .zIndex(2.0)
             }
-            .environmentObject(vm)
         }
     }
 }

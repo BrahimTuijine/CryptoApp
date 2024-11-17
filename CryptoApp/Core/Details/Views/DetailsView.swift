@@ -30,7 +30,7 @@ struct DetailsView: View {
     ]
     
     private let spacing: CGFloat = 30
-    @State var showMore: Bool = false
+    @State private var showMore: Bool = false
     
     init(coin: CoinModel) {
         _vm = StateObject(wrappedValue: CoinDetailsViewModel(coin: coin))
