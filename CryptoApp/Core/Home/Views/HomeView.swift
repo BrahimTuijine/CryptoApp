@@ -172,7 +172,7 @@ extension HomeView {
                 .opacity([defaultSort, secondSort].contains(vm.sortOptions) ? 1 : 0)
         }
         .onTapGesture {
-            withAnimation(.default) {
+            withAnimation(.easeIn) {
                 if vm.sortOptions == defaultSort {
                     vm.sortOptions = secondSort
                 } else {
